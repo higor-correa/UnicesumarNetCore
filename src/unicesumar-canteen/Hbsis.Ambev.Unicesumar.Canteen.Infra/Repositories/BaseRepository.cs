@@ -19,7 +19,9 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
         }
 
         public async Task<TEntity> FindAsync(Guid id) => await DbSet.FirstOrDefaultAsync(x => x.Id == id);
+
         public async Task AddAsync(TEntity entity) => await DbSet.AddAsync(entity);
+
         public Task UpdateAsync(TEntity entity)
         {
             var isDetached = _context.Entry(entity).State == EntityState.Detached;
@@ -30,6 +32,18 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
             }
 
             return Task.CompletedTask;
+        }
+
+        public Task RemoveAsync(TEntity entity)
+        {
+            DbSet.Remove(entity);
+            return Task.CompletedTask;
+        }
+
+        public async Task RemoveAsync(Guid id)
+        {
+            var entity = await FindAsync(id);
+            DbSet.Remove(entity);
         }
     }
 }
