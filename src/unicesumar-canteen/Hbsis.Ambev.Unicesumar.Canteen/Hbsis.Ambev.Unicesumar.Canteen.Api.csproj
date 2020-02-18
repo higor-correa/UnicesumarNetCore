@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Hbsis.Ambev.Unicesumar.Canteen.Api</RootNamespace>
+    <UserSecretsId>72a27a33-b23b-4b91-bfe0-e72a5f4f537a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hbsis.Ambev.Unicesumar.Canteen.Domain\Hbsis.Ambev.Unicesumar.Canteen.Domain.csproj" />
+    <ProjectReference Include="..\Hbsis.Ambev.Unicesumar.Canteen.Infra\Hbsis.Ambev.Unicesumar.Canteen.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\Middlewares\" />
+  </ItemGroup>
+
+
+</Project>
