@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Hbsis.Ambev.Unicesumar.Canteen.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Api
 {
@@ -25,6 +20,8 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<CanteenContext>(opt => opt.UseNpgsql(connectionString));
             services.AddControllers();
         }
 
@@ -35,6 +32,8 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            UpdateDatabase(app);
 
             app.UseHttpsRedirection();
 
@@ -47,5 +46,13 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
                 endpoints.MapControllers();
             });
         }
+
+        private void UpdateDatabase(IApplicationBuilder app)
+        {
+            var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var context = serviceScope.ServiceProvider.GetRequiredService<CanteenContext>();
+            context.Database.Migrate();
+        }
+
     }
 }
