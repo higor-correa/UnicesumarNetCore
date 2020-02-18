@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Transactions\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
