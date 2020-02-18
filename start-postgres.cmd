@@ -1,0 +1,1 @@
+docker run --name unicesumar-shopdb -e POSTGRES_USER=unicesumar -e POSTGRES_PASSWORD=curso-unicesumar -p 5432:5432 -d postgres
