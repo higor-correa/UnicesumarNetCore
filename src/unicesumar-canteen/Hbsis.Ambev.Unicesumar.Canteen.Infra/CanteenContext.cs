@@ -8,9 +8,12 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra
     {
         private readonly IConfiguration _configuration;
 
-        public CanteenContext(IConfiguration configuration) { _configuration = configuration; }
+        public CanteenContext() { }
 
-        public CanteenContext(DbContextOptions<CanteenContext> options) : base(options) { }
+        public CanteenContext(DbContextOptions<CanteenContext> options, IConfiguration configuration) : base(options)
+        {
+            _configuration = configuration;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
