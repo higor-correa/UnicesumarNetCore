@@ -1,4 +1,9 @@
+using Hbsis.Ambev.Unicesumar.Canteen.Api.Configurations.Authentications;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Users;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra;
+using Hbsis.Ambev.Unicesumar.Canteen.Infra.Notifications;
+using Hbsis.Ambev.Unicesumar.Canteen.Infra.Transactions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +27,12 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CanteenContext>(opt => opt.UseNpgsql(connectionString));
+            services.AddScoped<DbContext, CanteenContext>();
+            services.AddScoped<IDomainNotification, DomainNotification>();
+            services.AddScoped<ITransaction, Transaction>();
+            services.AddScoped<IScopedContext, ScopedContext>();
+
+
             services.AddControllers();
         }
 
