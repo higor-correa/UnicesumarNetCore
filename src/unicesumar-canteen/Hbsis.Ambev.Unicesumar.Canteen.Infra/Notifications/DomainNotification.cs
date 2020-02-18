@@ -11,6 +11,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Notifications
 
         public IReadOnlyCollection<string> Errors => _errors.AsReadOnly();
         public IReadOnlyCollection<string> Notifications => _notifications.AsReadOnly();
+        public bool HasError { get; private set; }
 
         public DomainNotification()
         {
@@ -20,6 +21,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Notifications
 
         public Task AddErrorAsync(string error)
         {
+            HasError = true;
             _errors.Add(error);
             return Task.CompletedTask;
         }
