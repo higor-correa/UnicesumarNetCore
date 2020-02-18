@@ -3,7 +3,7 @@ using System;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 {
-    public class OrderProduct
+    public class OrderProduct : BaseEntity
     {
         protected OrderProduct() { }
         public OrderProduct(Order order, Product product, int quantity)
@@ -15,7 +15,6 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
             Quantity = quantity;
         }
 
-        public Guid Id { get; protected set; }
         public int Quantity { get; protected set; }
 
         public Guid ProductId { get; protected set; }

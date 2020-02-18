@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Products
+﻿namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Products
 {
-    public class Product
+    public class Product : BaseEntity
     {
         protected Product() { }
 
-        public Guid Id { get; protected set; }
         public string Description { get; protected set; }
         public decimal Price { get; protected set; }
     }
