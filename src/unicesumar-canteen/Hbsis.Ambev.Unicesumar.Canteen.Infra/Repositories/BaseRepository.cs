@@ -21,10 +21,13 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
         }
         protected virtual IQueryable<TEntity> Including(IQueryable<TEntity> query) => query;
 
-        public async Task<TEntity> FindAsync(Guid id)
+        public async Task<TEntity> FindAsync(Guid id) => await FindAsync(id, false);
+
+        public async Task<TEntity> FindAsync(Guid id, bool includes)
         {
             var query = DbSet.AsQueryable();
-            return await Including(query).FirstOrDefaultAsync(x => x.Id == id);
+            query = includes ? Including(query) : query;
+            return await query.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<TEntity>> FindAsync(params Guid[] id)

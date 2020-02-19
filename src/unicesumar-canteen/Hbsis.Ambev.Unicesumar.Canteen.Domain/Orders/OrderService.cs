@@ -24,6 +24,8 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
             _productRepository = productRepository;
         }
 
+        public async Task<Order> GetAsync(Guid id) => await _orderRepository.FindAsync(id, includes: false);
+
         public async Task<Guid> NewOrderAsync(OrderRequest orderRequest)
         {
             var order = new Order(orderRequest.ClientName);
@@ -75,5 +77,6 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
             foreach (var orderProduct in order.Products)
                 await _orderProductRepository.RemoveAsync(orderProduct);
         }
+
     }
 }

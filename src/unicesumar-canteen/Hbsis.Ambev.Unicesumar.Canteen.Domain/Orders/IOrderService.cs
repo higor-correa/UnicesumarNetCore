@@ -6,6 +6,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 {
     public interface IOrderService
     {
+        Task<Order> GetAsync(Guid id);
         Task AddProductAsync(Guid orderId, Guid productId, int quantity);
         Task CancelOrderAsync(Guid orderId);
         Task<Guid> NewOrderAsync(OrderRequest orderRequest);
