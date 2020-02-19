@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_USER: "unicesumar"
+      POSTGRES_PASSWORD: "curso-unicesumar"
+    ports:
+      - "5432:5432"
+    networks:
+      - hbsis-canteen-network
+      
+  unicesumar-canteen:
+    image: hbsis/unicesumar-canteen
+    ports:
+      - "60000:80"
+    depends_on:
+      - postgres-db
+    networks:
+      - hbsis-canteen-network
+
+networks: 
+  hbsis-canteen-network:
+    driver: bridge

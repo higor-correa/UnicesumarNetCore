@@ -46,6 +46,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddCors();
             services.AddControllers();
         }
 
@@ -59,6 +60,13 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
 
             UpdateDatabase(app);
 
+            app.UseCors(x =>
+            {
+                x.AllowAnyOrigin();
+                x.AllowAnyHeader();
+                x.AllowAnyMethod();
+            });
+            
             app.UseMiddleware<TransactionMiddleware>();
 
             app.UseHttpsRedirection();
