@@ -21,5 +21,9 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
         public Product Product { get; protected set; }
         public Guid OrderId { get; protected set; }
         public Order Order { get; protected set; }
+
+        public void Increase(int quantity) => Quantity += quantity;
+        public void Decrease(int quantity) => Quantity -= quantity;
+        public bool IsEmpty() => Quantity <= 0;
     }
 }

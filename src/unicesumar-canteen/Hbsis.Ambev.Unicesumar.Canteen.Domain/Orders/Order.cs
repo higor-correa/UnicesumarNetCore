@@ -1,5 +1,7 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Products;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 {
@@ -16,14 +18,43 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
         private readonly List<OrderProduct> _products;
 
         public string ClientName { get; protected set; }
+
+        internal void AddProduct() => throw new NotImplementedException();
+
         public decimal Total { get; protected set; }
         public IReadOnlyCollection<OrderProduct> Products => _products.AsReadOnly();
 
-        public Order AddProduct(Product product, int quantity)
+        public OrderProduct AddProduct(Product product, int quantity)
         {
             Total += product.Price * quantity;
-            _products.Add(new OrderProduct(this, product, quantity));
-            return this;
+            var orderProduct = _products.FirstOrDefault(x => x.ProductId == product.Id);
+
+            if (orderProduct == null)
+            {
+                orderProduct = new OrderProduct(this, product, quantity);
+                _products.Add(orderProduct);
+            }
+            else
+                orderProduct.Increase(quantity);
+
+            return orderProduct;
+        }
+
+        public OrderProduct RemoveProduct(Product product, int quantity)
+        {
+            var orderProduct = _products.FirstOrDefault(x => x.ProductId == product.Id);
+
+            if (orderProduct != null)
+            {
+                var quantityToRemove = quantity > orderProduct.Quantity  ? orderProduct.Quantity : quantity;
+
+                Total -= product.Price * quantityToRemove;
+                orderProduct.Decrease(quantityToRemove);
+                if (orderProduct.IsEmpty())
+                    _products.Remove(orderProduct);
+            }
+
+            return orderProduct;
         }
     }
 }
