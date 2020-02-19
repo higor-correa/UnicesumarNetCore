@@ -1,3 +1,4 @@
+using AutoMapper;
 using Hbsis.Ambev.Unicesumar.Canteen.Api.Configurations.Authentications;
 using Hbsis.Ambev.Unicesumar.Canteen.Api.Configurations.Middlewares;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
@@ -42,6 +43,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
             services.AddScoped<IOrderProductRepository, OrderProductRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
         }
