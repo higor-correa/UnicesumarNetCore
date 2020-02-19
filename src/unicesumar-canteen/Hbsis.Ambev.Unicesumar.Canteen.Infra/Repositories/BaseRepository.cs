@@ -19,12 +19,19 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
             _context = dbContext;
             DbSet = dbContext.Set<TEntity>();
         }
+        protected virtual IQueryable<TEntity> Including(IQueryable<TEntity> query) => query;
 
-        public async Task<TEntity> FindAsync(Guid id) =>
-            await DbSet.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<TEntity> FindAsync(Guid id)
+        {
+            var query = DbSet.AsQueryable();
+            return await Including(query).FirstOrDefaultAsync(x => x.Id == id);
+        }
 
-        public async Task<IEnumerable<TEntity>> FindAsync(params Guid[] id) =>
-            await DbSet.Where(x => id.Contains(x.Id)).ToListAsync();
+        public async Task<IEnumerable<TEntity>> FindAsync(params Guid[] id)
+        {
+            var query = DbSet.AsQueryable();
+            return await Including(query).Where(x => id.Contains(x.Id)).ToListAsync();
+        }
 
         public async Task AddOrUpdateAsync(TEntity entity)
         {
