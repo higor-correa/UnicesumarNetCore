@@ -1,4 +1,5 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +10,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
         protected Order()
         {
             _products = new List<OrderProduct>();
+            Date = DateTime.UtcNow;
         }
 
         public Order(string clientName) : this()
@@ -20,6 +22,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 
         public string ClientName { get; protected set; }
         public decimal Total { get; protected set; }
+        public DateTime Date { get; protected set; }
         public IReadOnlyCollection<OrderProduct> Products => _products.AsReadOnly();
 
         public OrderProduct AddProduct(Product product, int quantity)
