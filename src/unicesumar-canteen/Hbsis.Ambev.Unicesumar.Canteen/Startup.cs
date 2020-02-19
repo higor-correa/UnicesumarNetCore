@@ -9,12 +9,16 @@ using Hbsis.Ambev.Unicesumar.Canteen.Infra;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra.Notifications;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra.Transactions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Api
 {
@@ -37,17 +41,20 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
             services.AddScoped<IDomainNotification, DomainNotification>();
             services.AddScoped<ITransaction, Transaction>();
             services.AddScoped<IScopedContext, ScopedContext>();
+            services.AddScoped<ILoginService, LoginService>();
 
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderProductService, OrderProductService>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderProductRepository, OrderProductRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddAutoMapper(typeof(Startup));
 
             services.AddCors();
             services.AddControllers();
+            AddAuthentication(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,14 +73,14 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
                 x.AllowAnyHeader();
                 x.AllowAnyMethod();
             });
-            
+
             app.UseMiddleware<TransactionMiddleware>();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            UseAuthentication(app);
 
             app.UseEndpoints(endpoints =>
             {
@@ -88,5 +95,35 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
             context.Database.Migrate();
         }
 
+        #region Authentication
+
+        private void UseAuthentication(IApplicationBuilder app)
+        {
+            app.UseAuthentication();
+            app.UseAuthorization();
+        }
+
+        private void AddAuthentication(IServiceCollection services)
+        {
+            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("Secret").Value);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+        } 
+        #endregion
     }
 }
