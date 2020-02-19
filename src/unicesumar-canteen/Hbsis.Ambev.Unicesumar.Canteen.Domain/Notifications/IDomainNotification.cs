@@ -9,6 +9,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications
         IReadOnlyCollection<string> Notifications { get; }
 
         bool HasError { get; }
+        bool HasNotification { get; }
 
         Task AddErrorAsync(string error);
         Task AddNotificationAsync(string notification);
