@@ -34,7 +34,6 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
             return Result(orderId);
         }
 
-
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetAsync([FromRoute] Guid id)
         {
