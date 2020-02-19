@@ -60,7 +60,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 
         public async Task RemoveProductAsync(Guid orderId, Guid productId, int quantity)
         {
-            var order = await _orderRepository.FindAsync(orderId);
+            var order = await _orderRepository.FindAsync(orderId, true);
             var product = await _productRepository.FindAsync(productId);
             var orderProduct = order.RemoveProduct(product, quantity);
 
