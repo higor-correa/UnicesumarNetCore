@@ -9,6 +9,14 @@
     <Compile Remove="Migrations\20200219020934_ProductData.Designer.cs" />
     <Compile Remove="Migrations\20200219021047_ProductData2.cs" />
     <Compile Remove="Migrations\20200219021047_ProductData2.Designer.cs" />
+    <Compile Remove="Migrations\20200219145155_UserMigration.cs" />
+    <Compile Remove="Migrations\20200219145155_UserMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200219145442_UserData.cs" />
+    <Compile Remove="Migrations\20200219145442_UserData.Designer.cs" />
+    <Compile Remove="Migrations\20200219150914_AddedUserName.cs" />
+    <Compile Remove="Migrations\20200219150914_AddedUserName.Designer.cs" />
+    <Compile Remove="Migrations\20200219151014_AddedUserName2.cs" />
+    <Compile Remove="Migrations\20200219151014_AddedUserName2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -86,175 +86,175 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Migrations
                         {
                             Id = new Guid("38df74cf-bbf1-4c47-a513-b51192162675"),
                             Description = "Adriática",
-                            Price = 9.55m
+                            Price = 27.11m
                         },
                         new
                         {
                             Id = new Guid("f9fa7a55-28ef-4dac-a938-170bc8c8e86e"),
                             Description = "Antarctica",
-                            Price = 11.54m
+                            Price = 22.14m
                         },
                         new
                         {
                             Id = new Guid("cb91f1d0-726f-4a84-96d1-419e3fe1582d"),
                             Description = "Beck's",
-                            Price = 4.15m
+                            Price = 14.17m
                         },
                         new
                         {
                             Id = new Guid("c292141a-2104-4afc-8431-596e40b0e783"),
                             Description = "Bohemia",
-                            Price = 9.25m
+                            Price = 16.44m
                         },
                         new
                         {
                             Id = new Guid("5b682ec6-40dc-4e71-a10f-4a0d9dff6b31"),
                             Description = "Brahma",
-                            Price = 28.6m
+                            Price = 4.29m
                         },
                         new
                         {
                             Id = new Guid("bea953df-7d78-4364-b2c8-953d1467aef9"),
                             Description = "Budweiser",
-                            Price = 27.51m
+                            Price = 29.67m
                         },
                         new
                         {
                             Id = new Guid("1623b63d-db67-4447-8460-52a840ac6f68"),
                             Description = "Caracu",
-                            Price = 11.98m
+                            Price = 24.22m
                         },
                         new
                         {
                             Id = new Guid("fe7edab4-2b64-416a-b020-5bfe8b0790bd"),
                             Description = "Cervejaria Colorado",
-                            Price = 20.24m
+                            Price = 9.28m
                         },
                         new
                         {
                             Id = new Guid("6acd2a47-4f54-483e-bda5-6e8845024ef0"),
                             Description = "Corona",
-                            Price = 17.13m
+                            Price = 5.68m
                         },
                         new
                         {
                             Id = new Guid("31d1631a-0478-4843-8055-66114c5c79ee"),
                             Description = "Franziskaner",
-                            Price = 10.31m
+                            Price = 11.14m
                         },
                         new
                         {
                             Id = new Guid("6f596be2-8b26-48ac-b85d-3a4fb3a647a4"),
                             Description = "Goose Island",
-                            Price = 29.81m
+                            Price = 10.7m
                         },
                         new
                         {
                             Id = new Guid("46c6ec94-41e2-4564-a99b-f67e487ae7ff"),
                             Description = "Hertog Jan",
-                            Price = 19.6m
+                            Price = 11.71m
                         },
                         new
                         {
                             Id = new Guid("908dfa2f-45b5-480f-82a0-a0ac0eb8c72d"),
                             Description = "Hoegaarden",
-                            Price = 11.48m
+                            Price = 8.87m
                         },
                         new
                         {
                             Id = new Guid("3b45bc7d-b6a7-4915-8007-fffee5bc1dd6"),
                             Description = "Leffe",
-                            Price = 27.55m
+                            Price = 8.8m
                         },
                         new
                         {
                             Id = new Guid("ad99c2eb-beab-4a2b-85eb-fba15ea45864"),
                             Description = "Legítima",
-                            Price = 9.42m
+                            Price = 19.6m
                         },
                         new
                         {
                             Id = new Guid("2c013e77-4d8e-412e-9492-f3c2d0be748b"),
                             Description = "Löwenbräu",
-                            Price = 6.31m
+                            Price = 11.19m
                         },
                         new
                         {
                             Id = new Guid("3964bb46-b21a-473e-81c2-8d9e648822fe"),
                             Description = "Magnífica do Maranhão",
-                            Price = 13.54m
+                            Price = 28.29m
                         },
                         new
                         {
                             Id = new Guid("c0d623b7-6dc2-47a5-90fe-bb266d338e76"),
                             Description = "Norteña",
-                            Price = 19.39m
+                            Price = 2.77m
                         },
                         new
                         {
                             Id = new Guid("2d410954-d770-4d8f-865a-63f26e58c757"),
                             Description = "Nossa",
-                            Price = 22.12m
+                            Price = 10.64m
                         },
                         new
                         {
                             Id = new Guid("d0c03fda-1183-4a9e-ba50-abb0dc0e466d"),
                             Description = "Original",
-                            Price = 17.2m
+                            Price = 9.2m
                         },
                         new
                         {
                             Id = new Guid("dcb96166-3eff-4d2d-b79f-06315ec3f2be"),
                             Description = "Patagonia",
-                            Price = 6.22m
+                            Price = 25.39m
                         },
                         new
                         {
                             Id = new Guid("5ce4210a-a73f-464a-9cef-86df80fa3ea7"),
                             Description = "Polar",
-                            Price = 16.08m
+                            Price = 10.92m
                         },
                         new
                         {
                             Id = new Guid("2dd4bedb-b7e7-4f05-9941-66bb2b4b7886"),
                             Description = "Quilmes",
-                            Price = 1.33m
+                            Price = 2.94m
                         },
                         new
                         {
                             Id = new Guid("d9470a0f-ee73-41ff-85f6-fd9fc76d4bec"),
                             Description = "Serramalte",
-                            Price = 14.29m
+                            Price = 5.15m
                         },
                         new
                         {
                             Id = new Guid("9f52b74d-70ff-42cd-8166-42b4d4227dce"),
                             Description = "Serrana",
-                            Price = 19.44m
+                            Price = 12.45m
                         },
                         new
                         {
                             Id = new Guid("da436ba6-0830-4e4f-8037-dc7875df8285"),
                             Description = "Skol",
-                            Price = 3.87m
+                            Price = 1.44m
                         },
                         new
                         {
                             Id = new Guid("41ab0c59-04a6-45d6-ac20-ef15e8a10d4e"),
                             Description = "Stella Artois",
-                            Price = 3.91m
+                            Price = 22.31m
                         },
                         new
                         {
                             Id = new Guid("8a234d72-6b32-44c2-b7c1-51b5186f0750"),
                             Description = "Três Fidalgas",
-                            Price = 12.47m
+                            Price = 25.59m
                         },
                         new
                         {
                             Id = new Guid("147e4c5e-a228-4188-abfc-8f612b1b7096"),
                             Description = "Wäls",
-                            Price = 28.75m
+                            Price = 8.88m
                         });
                 });
 
@@ -265,12 +265,23 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnName("Login")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name")
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnName("Password")
                         .HasColumnType("text");
 
                     b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnName("Role")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -282,6 +293,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Migrations
                         {
                             Id = new Guid("cc915b3a-0d98-451e-99c8-d2988079737f"),
                             Login = "higor",
+                            Name = "higor",
                             Password = "hbsis",
                             Role = "administrator"
                         },
@@ -289,6 +301,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Migrations
                         {
                             Id = new Guid("e7815408-72fa-40e6-b631-ec4fc44e6a6f"),
                             Login = "matheus",
+                            Name = "matheus",
                             Password = "hbsis",
                             Role = "manager"
                         },
@@ -296,6 +309,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Migrations
                         {
                             Id = new Guid("0166fcd6-02f6-4a94-a3af-7b15f8a2d33f"),
                             Login = "hugo",
+                            Name = "hugo",
                             Password = "hbsis",
                             Role = "client"
                         });
