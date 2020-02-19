@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
 {
-    [Route("api/v1/order")]
+    [Route("api/v1/orders")]
     public class OrderController : BaseController
     {
         private readonly IOrderService _orderService;
