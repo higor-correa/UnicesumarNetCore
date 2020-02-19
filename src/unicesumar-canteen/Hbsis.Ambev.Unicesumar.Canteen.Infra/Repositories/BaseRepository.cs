@@ -1,12 +1,12 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
 {
-    public class BaseRepository<TEntity>
-        where TEntity : BaseEntity
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly DbContext _context;
 
