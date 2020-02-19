@@ -1,5 +1,4 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Products;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +7,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
     public class Order : BaseEntity
     {
         protected Order()
-        {   
+        {
             _products = new List<OrderProduct>();
         }
 
@@ -20,9 +19,6 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
         private readonly List<OrderProduct> _products;
 
         public string ClientName { get; protected set; }
-
-        internal void AddProduct() => throw new NotImplementedException();
-
         public decimal Total { get; protected set; }
         public IReadOnlyCollection<OrderProduct> Products => _products.AsReadOnly();
 
