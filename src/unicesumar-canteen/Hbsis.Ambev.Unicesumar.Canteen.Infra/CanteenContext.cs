@@ -1,4 +1,5 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Products;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Users;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra
             modelBuilder.ApplyConfiguration(new ProductMapping());
             modelBuilder.ApplyConfiguration(new OrderMapping());
             modelBuilder.ApplyConfiguration(new OrderProductMapping());
+            modelBuilder.ApplyConfiguration(new UserMapping());
 
             var random = new Random();
             modelBuilder.Entity<Product>().HasData(
@@ -61,7 +63,11 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra
                 new Product(Guid.Parse("8a234d726b3244c2b7c151b5186f0750"), "Três Fidalgas", RandomPrice(random)),
                 new Product(Guid.Parse("147e4c5ea2284188abfc8f612b1b7096"), "Wäls", RandomPrice(random))
             );
-
+            modelBuilder.Entity<User>().HasData(
+                new User(Guid.Parse("cc915b3a-0d98-451e-99c8-d2988079737f"), "higor", "hbsis", "administrator"),
+                new User(Guid.Parse("e7815408-72fa-40e6-b631-ec4fc44e6a6f"), "matheus", "hbsis", "manager"),
+                new User(Guid.Parse("0166fcd6-02f6-4a94-a3af-7b15f8a2d33f"), "hugo", "hbsis", "client")
+            );
             base.OnModelCreating(modelBuilder);
         }
 
