@@ -7,12 +7,14 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 {
     public class Order : BaseEntity
     {
-        protected Order() { }
+        protected Order()
+        {   
+            _products = new List<OrderProduct>();
+        }
 
-        public Order(string clientName)
+        public Order(string clientName) : this()
         {
             ClientName = clientName;
-            _products = new List<OrderProduct>();
         }
 
         private readonly List<OrderProduct> _products;
@@ -46,7 +48,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
 
             if (orderProduct != null)
             {
-                var quantityToRemove = quantity > orderProduct.Quantity  ? orderProduct.Quantity : quantity;
+                var quantityToRemove = quantity > orderProduct.Quantity ? orderProduct.Quantity : quantity;
 
                 Total -= product.Price * quantityToRemove;
                 orderProduct.Decrease(quantityToRemove);
