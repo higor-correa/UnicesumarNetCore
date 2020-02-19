@@ -5,6 +5,7 @@ using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Requests;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
@@ -41,6 +42,15 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
             var orderResponse = _mapper.Map<OrderResponse>(order);
 
             return order == null ? NotFound() : Result(orderResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAsync([FromQuery] OrderFilter filter)
+        {
+            var orders = await _orderService.ListAsync(filter);
+            var ordersResponse = _mapper.Map<IEnumerable<OrderResponse>>(orders);
+
+            return Result(ordersResponse);
         }
 
         [HttpDelete("{id:guid}")]

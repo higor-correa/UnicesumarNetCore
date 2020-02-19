@@ -1,6 +1,7 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Requests;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +26,9 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
         }
 
         public async Task<Order> GetAsync(Guid id) => await _orderRepository.FindAsync(id, includes: false);
+
+        public async Task<IEnumerable<Order>> ListAsync(OrderFilter filter) =>
+            await _orderRepository.ListAsync(filter, includes: false);
 
         public async Task<Guid> NewOrderAsync(OrderRequest orderRequest)
         {
@@ -77,6 +81,5 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders
             foreach (var orderProduct in order.Products)
                 await _orderProductRepository.RemoveAsync(orderProduct);
         }
-
     }
 }
