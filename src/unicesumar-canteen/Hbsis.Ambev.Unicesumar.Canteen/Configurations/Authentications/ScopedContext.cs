@@ -6,10 +6,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Configurations.Authentications
     public class ScopedContext : IScopedContext
     {
 
-        public ScopedContext(string token)
-        {
-
-        }
+        public ScopedContext() { }
 
         public Guid UserId { get; private set; }
 
