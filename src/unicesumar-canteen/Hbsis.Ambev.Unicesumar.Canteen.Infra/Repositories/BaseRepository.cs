@@ -2,6 +2,8 @@
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
@@ -18,7 +20,11 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
             DbSet = dbContext.Set<TEntity>();
         }
 
-        public async Task<TEntity> FindAsync(Guid id) => await DbSet.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<TEntity> FindAsync(Guid id) =>
+            await DbSet.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<IEnumerable<TEntity>> FindAsync(params Guid[] id) =>
+            await DbSet.Where(x => id.Contains(x.Id)).ToListAsync();
 
         public async Task AddAsync(TEntity entity) => await DbSet.AddAsync(entity);
 
