@@ -1,10 +1,12 @@
 ﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BaseController : ControllerBase
     {
         private readonly IDomainNotification _domainNotification;

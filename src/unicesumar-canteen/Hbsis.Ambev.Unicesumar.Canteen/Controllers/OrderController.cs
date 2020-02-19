@@ -3,6 +3,7 @@ using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Requests;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "administrator,manager")]
         public async Task<IActionResult> CancelAsync([FromRoute]Guid id)
         {
             await _orderService.CancelOrderAsync(id);
