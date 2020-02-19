@@ -1,6 +1,8 @@
-﻿using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
+﻿using AutoMapper;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Requests;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,14 +13,17 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
     public class OrderController : BaseController
     {
         private readonly IOrderService _orderService;
+        private readonly IMapper _mapper;
 
         public OrderController
         (
             IDomainNotification domainNotification,
-            IOrderService orderService
+            IOrderService orderService,
+            IMapper mapper
         ) : base(domainNotification)
         {
             _orderService = orderService;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -34,8 +39,9 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api.Controllers
         public async Task<IActionResult> GetAsync([FromRoute] Guid id)
         {
             var order = await _orderService.GetAsync(id);
+            var orderResponse = _mapper.Map<OrderResponse>(order);
 
-            return order == null ? NotFound() : Result(order);
+            return order == null ? NotFound() : Result(orderResponse);
         }
 
         [HttpDelete("{id:guid}")]
