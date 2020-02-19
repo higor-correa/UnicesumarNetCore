@@ -39,6 +39,7 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
             services.AddScoped<IScopedContext, ScopedContext>();
 
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderProductService, OrderProductService>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderProductRepository, OrderProductRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
