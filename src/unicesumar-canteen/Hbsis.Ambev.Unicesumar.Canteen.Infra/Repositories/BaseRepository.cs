@@ -26,6 +26,14 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories
         public async Task<IEnumerable<TEntity>> FindAsync(params Guid[] id) =>
             await DbSet.Where(x => id.Contains(x.Id)).ToListAsync();
 
+        public async Task AddOrUpdateAsync(TEntity entity)
+        {
+            if (entity.Id == Guid.Empty)
+                await AddAsync(entity);
+            else
+                await UpdateAsync(entity);
+        }
+
         public async Task AddAsync(TEntity entity) => await DbSet.AddAsync(entity);
 
         public Task UpdateAsync(TEntity entity)

@@ -8,5 +8,6 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Domain.Repositories
         Task AddAsync(OrderProduct entity);
         Task UpdateAsync(OrderProduct entity);
         Task RemoveAsync(OrderProduct entity);
+        Task AddOrUpdateAsync(OrderProduct orderProduct);
     }
 }
