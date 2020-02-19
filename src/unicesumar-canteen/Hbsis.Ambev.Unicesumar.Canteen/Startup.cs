@@ -1,8 +1,12 @@
 using Hbsis.Ambev.Unicesumar.Canteen.Api.Configurations.Authentications;
+using Hbsis.Ambev.Unicesumar.Canteen.Api.Configurations.Middlewares;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Notifications;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Orders;
+using Hbsis.Ambev.Unicesumar.Canteen.Domain.Repositories;
 using Hbsis.Ambev.Unicesumar.Canteen.Domain.Users;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra.Notifications;
+using Hbsis.Ambev.Unicesumar.Canteen.Infra.Repositories;
 using Hbsis.Ambev.Unicesumar.Canteen.Infra.Transactions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,11 +30,17 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<CanteenContext>(opt => opt.UseNpgsql(connectionString));
             services.AddScoped<DbContext, CanteenContext>();
             services.AddScoped<IDomainNotification, DomainNotification>();
             services.AddScoped<ITransaction, Transaction>();
             services.AddScoped<IScopedContext, ScopedContext>();
+
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderProductRepository, OrderProductRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
 
             services.AddControllers();
@@ -45,6 +55,8 @@ namespace Hbsis.Ambev.Unicesumar.Canteen.Api
             }
 
             UpdateDatabase(app);
+
+            app.UseMiddleware<TransactionMiddleware>();
 
             app.UseHttpsRedirection();
 
